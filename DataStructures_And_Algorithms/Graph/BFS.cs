@@ -24,13 +24,10 @@ namespace DataStructures_And_Algorithms.Graph
 
                 foreach (var item in graph.GetNeighbors(current))
                 {
-                    if (visited.Contains(item))
+                    if (visited.Add(item))
                     {
-                        continue;
+                        queue.Enqueue(item);
                     }
-
-                    visited.Add(item);
-                    queue.Enqueue(item);
                 }
             }
 

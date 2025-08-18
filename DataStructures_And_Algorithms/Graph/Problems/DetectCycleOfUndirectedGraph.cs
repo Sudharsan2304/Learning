@@ -12,7 +12,9 @@
                 if (!visited.Contains(vertex))
                 {
                     if (DetectCycle(graph, vertex, visited, default, hasParent: false))
+                    {
                         return true;
+                    }
                 }
             }
 

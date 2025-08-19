@@ -39,10 +39,13 @@
                         return true;
                     }
                 }
-                else if (!(hasParent && EqualityComparer<T>.Default.Equals(neighbor, parent)))
+                else
                 {
-                    // visited neighbor that is not the parent → cycle found
-                    return true;
+                    if (!(hasParent && EqualityComparer<T>.Default.Equals(neighbor, parent)))
+                    {
+                        // visited neighbor that is not the parent → cycle found
+                        return true;
+                    }
                 }
             }
 

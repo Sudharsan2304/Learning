@@ -25,7 +25,7 @@
             UndirectedGraph<T> graph,
             T vertex,
             HashSet<T> visited,
-            T parent,
+            T? parent,
             bool hasParent) where T : notnull
         {
             visited.Add(vertex);

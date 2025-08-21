@@ -4,7 +4,7 @@ namespace DataStructures_And_Algorithms.Graph.Problems
 {
     public partial class GraphProblems
     {
-        public static List<T> TopoSort<T>(DirectedGraph<T> directedGraph) where T : notnull
+        public static List<T> TopoSort<T>(Graph<T, T> directedGraph) where T : notnull
         {
             ArgumentNullException.ThrowIfNull(directedGraph, nameof(directedGraph));
 
@@ -51,6 +51,7 @@ namespace DataStructures_And_Algorithms.Graph.Problems
                 foreach (var neighbor in directedGraph.GetNeighbors(current))
                 {
                     indegreeNodeCount[neighbor]--;
+
                     if (indegreeNodeCount[neighbor] == 0)
                     {
                         queue.Enqueue(neighbor);
@@ -61,5 +62,47 @@ namespace DataStructures_And_Algorithms.Graph.Problems
             return result;
         }
 
+
+        public static List<T> TopoSortDFS<T>(Graph<T, T> directedGraph) where T : notnull
+        {
+            ArgumentNullException.ThrowIfNull(directedGraph, nameof(directedGraph));
+
+            var stack = new Stack<T>();
+
+            var visited = new HashSet<T>(); 
+
+            foreach(var vertex in directedGraph.Vertices)
+            {
+                if (!visited.Contains(vertex))
+                {
+                    TopoSortDFS(directedGraph, stack, visited, vertex);
+                }
+            }
+
+            var result =  new List<T>();
+
+            while (stack.IsNotEmpty())
+            {
+                result.Add(stack.Pop());
+            }
+
+
+            return result;
+        }
+
+        private static void TopoSortDFS<T>(Graph<T, T> directedGraph, Stack<T> stack, HashSet<T> visited, T vertex) where T : notnull
+        {
+            visited.Add(vertex);
+
+            foreach(var neighbor in directedGraph.GetNeighbors(vertex))
+            {
+                if (!visited.Contains(neighbor))
+                {
+                    TopoSortDFS(directedGraph, stack, visited, neighbor);
+                }
+            }
+
+            stack.Push(vertex);
+        }
     }
 }

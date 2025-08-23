@@ -33,7 +33,7 @@
             {
                 int nextRow = i + row, nextCol = j + col;
 
-                if (IsWithInBoundary(island, nextRow, nextCol) &&
+                if (IsWithinBoundary(island, nextRow, nextCol) &&
                     island[nextRow][nextCol] == 1)
                 {
                     DFSIsland(island, nextRow, nextCol);
@@ -41,7 +41,7 @@
             }
         }
 
-        private static bool IsWithInBoundary(List<List<int>> island, int nextRow, int nextCol)
+        private static bool IsWithinBoundary(List<List<int>> island, int nextRow, int nextCol)
         {
             return nextRow >= 0 && nextRow < island.Count &&
                    nextCol >= 0 && nextCol < island[nextRow].Count;

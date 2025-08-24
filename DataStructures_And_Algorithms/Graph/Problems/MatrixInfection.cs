@@ -7,7 +7,8 @@ namespace DataStructures_And_Algorithms.Graph.Problems
         public static int MatrixInfection(List<List<int>> matrix)
         {
             var queue = new Queue<(int row, int col)>();
-            var directions = new (int dr, int dc)[] { (1, 0), (-1, 0), (0, 1), (0, -1) };
+
+            (int dr, int dc)[] directions = [(1, 0), (-1, 0), (0, 1), (0, -1)];
 
             int noOfUnInfectedPerson = 0;
 
@@ -27,7 +28,10 @@ namespace DataStructures_And_Algorithms.Graph.Problems
             }
 
             // If there are no uninfected people, time is zero.
-            if (noOfUnInfectedPerson == 0) return 0;
+            if (noOfUnInfectedPerson == 0)
+            {
+                return 0;
+            }
 
             int totalSeconds = 0;
 
@@ -45,17 +49,24 @@ namespace DataStructures_And_Algorithms.Graph.Problems
                         int nr = r + dr;
                         int nc = c + dc;
 
-                        if (IsWithinBoundary(matrix, nr, nc) && matrix[nr][nc] == 1)
+                        var isWithinBoundary = matrix.IsWithinBoundary(nr, nc);
+
+                        if (!isWithinBoundary || matrix[nr][nc] != 1)
                         {
-                            matrix[nr][nc] = 2;
-                            queue.Enqueue((nr, nc));
-                            noOfUnInfectedPerson--;
-                            infectedThisRound = true;
+                            continue;
                         }
+
+                        matrix[nr][nc] = 2;
+                        queue.Enqueue((nr, nc));
+                        noOfUnInfectedPerson--;
+                        infectedThisRound = true;
                     }
                 }
 
-                if (infectedThisRound) totalSeconds++;
+                if (infectedThisRound)
+                {
+                    totalSeconds++;
+                }
             }
 
             return noOfUnInfectedPerson == 0 ? totalSeconds : -1;

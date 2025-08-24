@@ -1,4 +1,6 @@
-﻿namespace DataStructures_And_Algorithms.Graph.Problems
+﻿using SharedProject.Extensions;
+
+namespace DataStructures_And_Algorithms.Graph.Problems
 {
     public partial class GraphProblems
     {
@@ -33,18 +35,14 @@
             {
                 int nextRow = i + row, nextCol = j + col;
 
-                if (IsWithinBoundary(island, nextRow, nextCol) &&
+                var isWithinBoundary = island.IsWithinBoundary(nextRow, nextCol);
+
+                if (isWithinBoundary &&
                     island[nextRow][nextCol] == 1)
                 {
                     DFSIsland(island, nextRow, nextCol);
                 }
             }
-        }
-
-        private static bool IsWithinBoundary(List<List<int>> island, int nextRow, int nextCol)
-        {
-            return nextRow >= 0 && nextRow < island.Count &&
-                   nextCol >= 0 && nextCol < island[nextRow].Count;
         }
 
 

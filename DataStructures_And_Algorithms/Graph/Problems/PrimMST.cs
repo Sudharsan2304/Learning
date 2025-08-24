@@ -10,8 +10,8 @@ namespace DataStructures_And_Algorithms.Graph.Problems
         /// Returns a new WeightedUndirectedGraph<T> containing the MST edges.
         /// </summary>
         public static WeightedUndirectedGraph<T> PrimMST<T>(
-    WeightedUndirectedGraph<T> graph)
-    where T : notnull
+            WeightedUndirectedGraph<T> graph)
+            where T : notnull
         {
             ArgumentNullException.ThrowIfNull(graph);
 
@@ -33,7 +33,7 @@ namespace DataStructures_And_Algorithms.Graph.Problems
                 pq.Enqueue((start, edge.Vertex, edge.Weight), edge.Weight);
             }
 
-            while (pq.Count > 0)
+            while (pq.IsNotEmpty())
             {
                 var (from, to, weight) = pq.Dequeue();
 

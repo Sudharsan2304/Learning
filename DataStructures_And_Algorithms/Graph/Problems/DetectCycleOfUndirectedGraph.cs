@@ -2,7 +2,6 @@
 {
     public partial class GraphProblems
     {
-
         public static bool DetectCycle<T>(UndirectedGraph<T> graph) where T : notnull
         {
             var visited = new HashSet<T>();

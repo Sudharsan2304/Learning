@@ -1,9 +1,4 @@
 ﻿using SharedProject.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataStructures_And_Algorithms.Graph.Problems
 {
@@ -14,6 +9,7 @@ namespace DataStructures_And_Algorithms.Graph.Problems
         TVertex source)
         where TVertex : notnull
         {
+            
             Dictionary<TVertex, double> dist = [];
             PriorityQueue<TVertex, double> pq = new();
 
@@ -24,6 +20,8 @@ namespace DataStructures_And_Algorithms.Graph.Problems
 
             dist[source] = 0;
             pq.Enqueue(source, 0);
+
+            dist.TryAdd
 
             while (pq.IsNotEmpty())
             {

@@ -38,7 +38,7 @@ namespace DataStructures_And_Algorithms.Graph.Problems
                 T start,
                 Dictionary<T, int> color) where T : notnull
             {
-                Queue<T> queue = new();
+                Queue<T> queue = [];
                 color[start] = 0;
                 queue.Enqueue(start);
 
